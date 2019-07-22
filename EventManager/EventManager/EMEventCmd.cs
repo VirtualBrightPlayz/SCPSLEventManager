@@ -32,8 +32,15 @@ namespace VirtualBrightPlayz.SCPSL.EventManager
                 if (int.TryParse(args[0], out outint))
                 {
                     eventManager.forceEvent = true;
-                    eventManager.curEvent = eventManager.events[outint];
-                    PluginManager.Manager.EnablePlugin(PluginManager.Manager.GetDisabledPlugin(eventManager.curEvent));
+                    if (eventManager.use_config_files)
+                    {
+                        eventManager.curEvent = eventManager.eventFiles[outint];
+                    }
+                    else
+                    {
+                        eventManager.curEvent = eventManager.events[outint];
+                        PluginManager.Manager.EnablePlugin(PluginManager.Manager.GetDisabledPlugin(eventManager.curEvent));
+                    }
                     return new string[] { "Set the event to: " + PluginManager.Manager.GetEnabledPlugin(eventManager.curEvent).Details.name };
                 }
                 else
