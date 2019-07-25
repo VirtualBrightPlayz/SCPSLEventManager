@@ -1,2 +1,3 @@
 # SCPSLEventManager
  
+read the wiki
